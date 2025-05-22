@@ -10,7 +10,7 @@ public struct AppError: LocalizedError {
 
 	public var title: String
 	public var message: String?
-	public var errorDescription: String? { message }
+	public var errorDescription: String? { message ?? title }
 
 	public init(title: String, message: String? = nil) {
 		self.title = title

@@ -37,7 +37,7 @@ public extension AnalyticsManagerInterface {
 		services.forEach { $0.setProperty(property) }
 	}
 
-	func setUserId(id: String) {
+	func setUserId(_ id: String) {
 		services.forEach { $0.setUserId(id) }
 	}
 }

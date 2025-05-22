@@ -18,8 +18,13 @@ import AppKit
 
 public struct SharingsPicker: NSViewRepresentable {
 
-	@Binding var isPresented: Bool
-	var sharingItems: [Any] = []
+	var isPresented: Binding<Bool>
+	var sharingItems: [Any]
+
+	public init(isPresented: Binding<Bool>, sharingItems: [Any] = []) {
+		self.isPresented = isPresented
+		self.sharingItems = sharingItems
+	}
 
 	public func makeNSView(context: Context) -> NSView {
 		let view = NSView()
@@ -27,7 +32,7 @@ public struct SharingsPicker: NSViewRepresentable {
 	}
 
 	public func updateNSView(_ nsView: NSView, context: Context) {
-		if isPresented {
+		if isPresented.wrappedValue {
 			let picker = NSSharingServicePicker(items: sharingItems)
 			picker.delegate = context.coordinator
 
@@ -55,7 +60,7 @@ public struct SharingsPicker: NSViewRepresentable {
 			// do here whatever more needed here with selected service
 
 			sharingServicePicker.delegate = nil
-			self.owner.isPresented = false
+			self.owner.isPresented.wrappedValue = false
 		}
 	}
 }
