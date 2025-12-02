@@ -55,7 +55,7 @@ final class ShareableObject: NSObject, UIActivityItemSource {
 			metadata?.originalURL = URL(fileURLWithPath: subtitle)
 		}
 
-		if let image = image ?? UIImage(named: "AppIcon") {
+		if let image {
 			metadata?.iconProvider = NSItemProvider(object: image)
 		}
 
